@@ -5,7 +5,7 @@ VENDOR		Colubris			8744
 #
 #       Vendor-specific attributes
 #
-#	$Id: dictionary.colubris 34995 2010-11-21 18:57:21Z wmeier $
+#	$Id$
 #
 BEGIN-VENDOR	Colubris
 

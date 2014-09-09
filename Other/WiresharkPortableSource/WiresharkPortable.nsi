@@ -1,7 +1,7 @@
 
 ; WiresharkPortable.nsi - runs Wireshark Portable from a PortableApps enabled device
 
-; $Id: WiresharkPortable.nsi 35300 2010-12-29 20:41:53Z cmaynard $
+; $Id$
 
 ;Copyright (C) 2004-2007 John T. Haller of PortableApps.com
 

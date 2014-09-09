@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- $Id: dictionary.dtd 34919 2010-11-17 03:16:30Z morriss $ -->
+<!-- $Id$ -->
 
 <!ELEMENT dictionary (tlv+)>
 

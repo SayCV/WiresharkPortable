@@ -3,7 +3,7 @@
 #	Attributes and values defined in RFC 5607.
 #	http://www.ietf.org/rfc/rfc5607.txt
 #
-#	$Id: dictionary.rfc5607 37375 2011-05-24 16:30:32Z wmeier $
+#	$Id$
 #
 
 VALUE	Service-Type			Framed-Management	18

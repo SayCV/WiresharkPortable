@@ -3,7 +3,7 @@
 #	Attributes and values defined in RFC 2865.
 #	http://www.ietf.org/rfc/rfc2865.txt
 #
-#	$Id: dictionary.rfc2865 28946 2009-07-06 12:39:58Z wmeier $
+#	$Id$
 #
 ATTRIBUTE	User-Name				1	string
 ATTRIBUTE	User-Password				2	string encrypt=1

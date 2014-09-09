@@ -4,7 +4,7 @@
 --
 -- (c) 2006 Luis E. Garcia Ontanon <luis@ontanon.org>
 --
--- $Id: dtd_gen.lua 43536 2012-06-28 22:56:06Z darkjames $
+-- $Id$
 -- 
 -- Wireshark - Network traffic analyzer
 -- By Gerald Combs <gerald@wireshark.org>

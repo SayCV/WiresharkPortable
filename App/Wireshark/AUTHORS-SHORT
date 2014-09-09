@@ -147,7 +147,7 @@ Palle Lyckegaard        <Palle[AT]lyckegaard.dk>
 Nicolas Balkota         <balkota[AT]mac.com> 
 Tom Uijldert            <Tom.Uijldert[AT]cmg.nl> 
 Akira Endoh             <endoh[AT]netmarks.co.jp> 
-Graeme Hewson           <graeme.hewson[AT]oracle.com> 
+Graeme Hewson           <ghewson[AT]wormhole.me.uk> 
 Pasi Eronen             <pe[AT]iki.fi> 
 Georg von Zezschwitz    <gvz[AT]2scale.net> 
 Steffen Weinreich       <steve[AT]weinreich.org> 
@@ -156,7 +156,7 @@ Gordon McKinney         <gordon[AT]night-ray.com>
 Pavel Novotny           <Pavel.Novotny[AT]icn.siemens.de> 
 Shinsuke Suzuki         <suz[AT]kame.net> 
 Andrew C. Feren         <acferen[AT]yahoo.com> 
-Tomas Kukosa            <tomas.kukosa[AT]siemens.com> 
+Tomas Kukosa            <tomas.kukosa[AT]unify.com> 
 Andreas Stockmeier      <a.stockmeier[AT]avm.de> 
 Pekka Nikander          <pekka.nikander[AT]nomadiclab.com> 
 Hamish Moffatt          <hamish[AT]cloud.net.au> 
@@ -550,6 +550,7 @@ Srinivasa Pradeep	<sippyemail-wireshark[AT]yahoo.com>
 Lori Tribble		<ljtconsulting[AT]gmail.com> 
 Thomas Boehne		<TBoehne[AT]ADwin.de> 
 Gerhard Gappmeier	<gerhard.gappmeier[AT]ascolab.com> 
+Hannes Mezger		<hannes.mezger[AT]ascolab.com> 
 David Katz		<dkatz[AT]airspan.com> 
 Toralf Förster		<toralf.foerster[AT]gmx.de> 
 Stéphane Bryant		<stephane[AT]glycon.org> 
@@ -610,7 +611,15 @@ Manuel Hofer		<manuel[At]mnlhfr.at>
 Gaurav Patwardhan	<gspatwar[AT]ncsu.edu> 
 Peter Hatina		<phatina[AT]redhat.com> 
 Tomasz Moń		<desowin[AT]gmail.com> 
-
+Uli Heilmeier		<uh[AT]heilmeier.eu> 
+Rupesh Patro		<rbpatro[AT]ncsu.edu> 
+Vaibhav Katkade		<katkade_v[AT]yahoo.com> 
+Allan W. Nielsen	<anielsen[AT]vitesse.com> 
+Ishraq Ibne Ashraf	<ishraq[AT]tinkerforge.com> 
+RobiOneKenobi		<robionekenobi[AT]bluewin.ch> 
+Zoltan Lajos Kis	<zoltan.lajos.kis[AT]ericsson.com> 
+Juan Antonio Montesinos <juan.mondl[AT]gmail.com> 
+Anish Bhatt		<anish[at]chelsio.com> 
 and by:
 
 Georgi Guninski		<guninski[AT]guninski.com>
@@ -777,8 +786,8 @@ Robert Simac		<rsimac[AT]cronsult.com>
 Johanna Sochos		<johanna.sochos[AT]swissqual.com>
 Felix Obenhuber		<felix[AT]obenhuber.de>
 Hilko Bengen		<bengen--wireshark[AT]hilluzination.de>
-Hadar Shoham		<hadar[AT]ti.com>
-Robert Bullen		<robert[AT]bitcricket.com>
+Hadar Shoham		<hadar.shoham[AT]gmail.com>
+Robert Bullen		<robert[AT]robertbullen.com>
 Chuck Kristofek		<chuck.kristofek[AT]ngc.com>
 Markus Renz		<Markus.Renz[AT]hirschmann.de>
 Toshihiro Kataoka	<kataoka.toshihiro[AT]gmail.com>
@@ -800,7 +809,7 @@ Paul Stath		<pstath[AT]axxcelera.com>
 DeCount			<aatrade[AT]libero.it>
 Andras Veres-Szentkiralyi	<vsza[AT]vsza.hu>
 Jakob Hirsch 		<jh.wireshark-bugzilla[AT]plonk.de>
-Роман Донченко		<DXDragon[AT]yandex.ru>
+Роман Донченко		<dpb[AT]corrigendum.ru>
 			<billyjeans[AT]gmail.com>
 Evan Huus		<eapache[AT]gmail.com>
 Tom Cook		<tcook[AT]ixiacom.com>
@@ -827,8 +836,39 @@ Dario Lombardo		<lomato[AT]gmail.com>
 Alexander Chemeris	<alexander.chemeris[AT]gmail.com>
 Ivan Klyuchnikov	<kluchnikovi[AT]gmail.com>
 Max Baker		<max[AT]warped.org>
+Diederik de Groot	<dkgroot[AT]talon.nl>
+Hauke Mehrtens		<hauke[AT]hauke-m.de>
+0xBismarck		<0xbismarck[AT]gmail.com>
+Peter Van Eynde		<pevaneyn[AT]cisco.com>
+Marko Hrastovec		<marko.hrastovec[AT]sloveniacontrol.si>
 Mike Garratt		<mg.wireshark[AT]evn.co.nz>
-
+Fabio Tarabelloni	<fabio.tarabelloni[AT]reloc.it>
+Chas Williams		<chas[AT]cmf.nrl.navy.mil>
+Javier Godoy		<uce[AT]rjgodoy.com.ar>
+Matt Texier		<mtexier[AT]arbor.net>
+Linas Vepstas		<linasvepstas[AT]gmail.com>
+Simon Zhong		<szhong[AT]juniper.net>
+Bart Van Assche		<bvanassche[AT]acm.org>
+Peter Lemenkov		<lemenkov[AT]gmail.com>
+Karl Beldan		<karl.beldan[AT]gmail.com>
+Jiri Engelthaler	<engycz[AT]gmail.com>
+Stephen Ludin		<sludin[AT]ludin.org>
+Andreas Urke		<andurke[AT]gmail.com>
+Patrik Lundquist	<patrik.lundquist[AT]gmail.com>
+Mark Vitale		<mvitale[AT]sinenomine.net>
+Peter Wu		<lekensteyn[AT]gmail.com>
+Jerry Negele		<jerry.negele[AT]arrisi.com>
+Hannes Hofer		<hhofer[AT]barracuda.com>
+Luca Coelho		<luca[AT]coelho.fi>
+Masayuki Takemura	<masayuki.takemura[AT]gmail.com>
+Ed Beroset		<beroset[AT]mindspring.com>
+e.yimjia		<jy.m12.0[AT]gmail.com>
+Jonathon Jongsma	<jjongsma[AT]redhat.com>
+Zeljko Ancimer		<zancimer[AT]gmail.com>
+Deon van der Westhuysen <deonvdw[AT]gmail.com>
+Ibrahim Can Yuce	<canyuce[AT]gmail.com>
+Robert Jongbloed	<robertj[AT]voxlucida.com.au>
+Pavel Moravec		<pmoravec[AT]redhat.com>
 
 Dan Lasley <dlasley[AT]promus.com> gave permission for his
 dumpit() hex-dump routine to be used.
@@ -855,3 +895,9 @@ snax <snax[AT]shmoo.com> gave permission to use his(?) weak key
 detection code from Airsnort.
 
 IANA gave permission for their port-numbers file to be used.
+
+We use the natural order string comparison algorithm, written by
+Martin Pool <mbp[AT]sourcefrog.net>.
+
+Emanuel Eichhammer <support[AT]qcustomplot.com> granted permission
+to use QCustomPlot.

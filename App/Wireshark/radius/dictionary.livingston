@@ -3,7 +3,7 @@
 # Vendor-Specific attributes use the SMI Network Management Private
 # Enterprise Code from the "Assigned Numbers" RFC
 #
-#	$Id: dictionary.livingston 34995 2010-11-21 18:57:21Z wmeier $
+#	$Id$
 #
 VENDOR		Livingston			307
 

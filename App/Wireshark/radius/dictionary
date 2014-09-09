@@ -1,6 +1,6 @@
 # -*- text -*-
 #
-# Version $Id: dictionary 47224 2013-01-23 12:08:15Z etxrab $
+# Version $Id$
 #
 # 2011-05-24 Updated based upon FreeRadius v2.1.10 dictionary file
 #            - Added: acme, alcatel.sr, iea, motorola.wimax, rfc4603, rfc 5580, rfc5607, rfc5904, wichorus
@@ -109,6 +109,7 @@ $INCLUDE dictionary.acme
 $INCLUDE dictionary.airespace
 $INCLUDE dictionary.alcatel
 $INCLUDE dictionary.alcatel.sr
+$INCLUDE dictionary.alcatel-lucent.aaa
 $INCLUDE dictionary.alcatel-lucent.xylan
 $INCLUDE dictionary.alteon
 $INCLUDE dictionary.alvarion

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: Ericsson.xml 46518 2012-12-12 12:48:12Z etxrab $ -->
 
 <application id="0" name="Diameter Common Messages" uri="http://www.ietf.org/rfc/rfc3588.txt?number=3588">
 <!-- *********** Last updated 2007-04-12 ************ -->

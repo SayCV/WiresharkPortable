@@ -3,9 +3,6 @@
    description="Reginfo XML doc (RFC 3680)"
    hierarchy="yes" ?>
 
-<!--
-$Id: reginfo.dtd 18970 2006-08-21 11:52:20Z martinm $    
--->
 
 <!ELEMENT reginfo (registration)* >
 <!ATTLIST reginfo xmlns CDATA #IMPLIED

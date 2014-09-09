@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>mergecap - The Wireshark Network Analyzer 1.10.1</title>
+<title>mergecap - The Wireshark Network Analyzer 1.12.0</title>
 <link rel="stylesheet" href="ws.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:rurban@x-ray.at" />
@@ -57,9 +57,9 @@
 <h1><a name="description">DESCRIPTION</a></h1>
 <p><strong>Mergecap</strong> is a program that combines multiple saved capture files into
 a single output file specified by the <strong>-w</strong> argument.  <strong>Mergecap</strong> knows
-how to read <strong>libpcap</strong> capture files, including those of <strong>tcpdump</strong>,
+how to read <strong>pcap</strong> capture files, including those of <strong>tcpdump</strong>,
 <strong>Wireshark</strong>, and other tools that write captures in that format.</p>
-<p>By default, <strong>Mergecap</strong> writes the capture file in <strong>libpcap</strong> format, and writes
+<p>By default, <strong>Mergecap</strong> writes the capture file in <strong>pcap</strong> format, and writes
 all of the packets from the input capture files to the output file.</p>
 <p><strong>Mergecap</strong> is able to detect, read and write the same capture files that
 are supported by <strong>Wireshark</strong>.
@@ -83,7 +83,7 @@ each frame's timestamp.</p>
 files if all input files have the same type.  If not all of the input
 files have the same frame encapsulation type, the output file type is
 set to WTAP_ENCAP_PER_PACKET.  Note that some capture file formats, most
-notably <strong>libpcap</strong>, do not currently support WTAP_ENCAP_PER_PACKET.
+notably <strong>pcap</strong>, do not currently support WTAP_ENCAP_PER_PACKET.
 This combination will cause the output file creation to fail.</p>
 <p>
 </p>
@@ -173,7 +173,7 @@ seconds.)</p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <p><code>pcap(3)</code>, <code>wireshark(1)</code>, <code>tshark(1)</code>, <code>dumpcap(1)</code>, <code>editcap(1)</code>, text2pcap(1),
-pcap-filter(7) or <code>tcpdump(8)</code> if it doesn't exist.</p>
+pcap-filter(7) or <code>tcpdump(8)</code></p>
 <p>
 </p>
 <hr />

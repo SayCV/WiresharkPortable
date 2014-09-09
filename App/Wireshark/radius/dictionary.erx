@@ -5,7 +5,7 @@
 #	Juniper's (was Unisphere's) broadband RAS
 #	From Terje Krogdahl <tekr@nextra.com>
 #
-# Version:	$Id: dictionary.erx 47517 2013-02-06 13:18:25Z etxrab $
+# Version:	$Id$
 #
 
 # This dictionary applies to access services on Juniper JUNOS (M/MX)

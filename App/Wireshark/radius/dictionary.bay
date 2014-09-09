@@ -6,7 +6,7 @@
 #	From MegaZone <megazone@megazone.org>, as posted to the bay-isp list.
 #	Modified for libradius by Alan DeKok <aland@ox.org>
 #
-#	$Id: dictionary.bay 34995 2010-11-21 18:57:21Z wmeier $
+#	$Id$
 #
 
 VENDOR		Bay-Networks			1584		# now Nortel

@@ -1,7 +1,4 @@
 <? wireshark:protocol proto_name="itunes" hierarchy="yes" description="iTunes podCast rss elements" ?>
-<!--
-$Id: itunes.dtd 19612 2006-10-19 18:35:10Z lego $
--->
 
 <!DOCTYPE itunes [
     

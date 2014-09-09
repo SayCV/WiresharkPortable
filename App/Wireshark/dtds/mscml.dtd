@@ -3,9 +3,6 @@
    media="application/mediaservercontrol+xml" 
    description="Media Server Control Markup Language - draft 07"
    hierarchy="yes" ?>
-<!--
-$Id: mscml.dtd 19902 2006-11-15 18:20:03Z martinm $
--->
 
 <!--
     DTD for MSCML - draft 07

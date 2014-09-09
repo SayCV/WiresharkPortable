@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: Vodafone.xml 45432 2012-10-09 17:37:49Z morriss $ -->
 
 <application id="16777238" name="3GPP Gx" uri="http://www.ietf.org/internet-drafts/draft-ietf-aaa-diameter-cc-06.txt">
 

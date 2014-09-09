@@ -3,8 +3,6 @@
 # RADIUS VSA Dictionary
 # http://www.iea-software.com
 #
-# $Id: dictionary.iea 39596 2011-10-26 05:03:26Z etxrab $
-#
 
 VENDOR IEA-Software 24023
 BEGIN-VENDOR IEA-Software

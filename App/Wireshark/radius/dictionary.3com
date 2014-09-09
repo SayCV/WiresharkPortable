@@ -3,7 +3,7 @@
 #	3com SuperStack Firewall dictionary
 #	Bought from Sonicwall, apparently, from Enterprise number 8741.
 #
-#		$Id: dictionary.3com 28996 2009-07-07 17:52:03Z wmeier $
+#		$Id$
 #
 
 VENDOR		3com				43

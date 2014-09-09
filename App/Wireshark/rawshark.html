@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>rawshark - The Wireshark Network Analyzer 1.10.1</title>
+<title>rawshark - The Wireshark Network Analyzer 1.12.0</title>
 <link rel="stylesheet" href="ws.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:rurban@x-ray.at" />
@@ -41,13 +41,13 @@
 <p>
 </p>
 <h1><a name="name">NAME</a></h1>
-<p>rawshark - Dump and analyze raw libpcap data</p>
+<p>rawshark - Dump and analyze raw pcap data</p>
 <p>
 </p>
 <hr />
 <h1><a name="synopsis">SYNOPSIS</a></h1>
 <p><strong>rawshark</strong>
-[&nbsp;<strong>-d</strong>&nbsp;&lt;encap:dlt&gt;|&lt;proto:protoname&gt;&nbsp;]
+[&nbsp;<strong>-d</strong>&nbsp;&lt;encap:linktype&gt;|&lt;proto:protoname&gt;&nbsp;]
 [&nbsp;<strong>-F</strong>&nbsp;&lt;field&nbsp;to&nbsp;display&gt;&nbsp;]
 [&nbsp;<strong>-h</strong>&nbsp;]
 [&nbsp;<strong>-l</strong>&nbsp;]
@@ -59,7 +59,7 @@
 [&nbsp;<strong>-R</strong>&nbsp;&lt;read&nbsp;(display)&nbsp;filter&gt;&nbsp;]
 [&nbsp;<strong>-s</strong>&nbsp;]
 [&nbsp;<strong>-S</strong>&nbsp;&lt;field&nbsp;format&gt;&nbsp;]
-[&nbsp;<strong>-t</strong>&nbsp;ad|a|r|d|e&nbsp;]
+[&nbsp;<strong>-t</strong>&nbsp;a|ad|adoy|d|dd|e|r|u|ud|udoy&nbsp;]
 [&nbsp;<strong>-v</strong>&nbsp;]</p>
 <p>
 </p>
@@ -78,7 +78,7 @@ One or more <strong>-F</strong> flags should be specified in order for the outpu
 useful. The other flags listed above follow the same conventions as
 <strong>Wireshark</strong> and <strong>TShark</strong>.</p>
 <p><strong>Rawshark</strong> expects input records with the following format by default. This
-matches the format of the packet header and packet data in a libpcap-formatted
+matches the format of the packet header and packet data in a pcap-formatted
 file on disk.</p>
 <pre>
     struct rawshark_rec_s {
@@ -90,13 +90,13 @@ file on disk.</p>
     };</pre>
 <p>If <strong>-p</strong> is supplied <strong>rawshark</strong> expects the following format.  This
 matches the <em>struct pcap_pkthdr</em> structure and packet data used in
-libpcap.  This structure's format is platform-dependent; the size of the
-<em>tv_sec</em> field in the <em>struct timeval</em> structure could be 32 bits or
-64 bits.  For <strong>rawshark</strong> to work, the layout of the structure in the
-input must match the layout of the structure in <strong>rawshark</strong>.  Note that
-this format will probably be the same as the previous format if
-<strong>rawshark</strong> is a 32-bit program, but will not necessarily be the same if
-<strong>rawshark</strong> is a 64-bit program.</p>
+libpcap/WinPcap.  This structure's format is platform-dependent; the
+size of the <em>tv_sec</em> field in the <em>struct timeval</em> structure could be
+32 bits or 64 bits.  For <strong>rawshark</strong> to work, the layout of the
+structure in the input must match the layout of the structure in
+<strong>rawshark</strong>.  Note that this format will probably be the same as the
+previous format if <strong>rawshark</strong> is a 32-bit program, but will not
+necessarily be the same if <strong>rawshark</strong> is a 64-bit program.</p>
 <pre>
     struct rawshark_rec_s {
         struct timeval ts;    /* Time stamp */
@@ -143,12 +143,14 @@ fields might be displayed.</p>
 <dd>
 <p>Specify how the packet data should be dissected. The encapsulation is of the
 form <em>type</em><strong>:</strong><em>value</em>, where <em>type</em> is one of:</p>
-<p><strong>encap</strong>:<em>name</em> Packet data should be dissected using the libpcap data link
-type (DLT) <em>name</em>, e.g. <strong>encap:EN10MB</strong> for Ethernet. Names are converted
-using <code>pcap_datalink_name_to_val()</code>.</p>
-<p><strong>encap</strong>:<em>number</em> Packet data should be dissected using the libpcap DLT
-<em>number</em>, e.g. <strong>encap:105</strong> for raw IEEE 802.11. A complete list of DLTs
-can be found in pcap-bpf.h in the libpcap sources.</p>
+<p><strong>encap</strong>:<em>name</em> Packet data should be dissected using the
+libpcap/WinPcap data link type (DLT) <em>name</em>, e.g. <strong>encap:EN10MB</strong> for
+Ethernet.  Names are converted using <code>pcap_datalink_name_to_val()</code>.
+A complete list of DLTs can be found at
+<a href="http://www.tcpdump.org/linktypes.html">http://www.tcpdump.org/linktypes.html</a>.</p>
+<p><strong>encap</strong>:<em>number</em> Packet data should be dissected using the
+libpcap/WinPcap LINKTYPE_ <em>number</em>, e.g. <strong>encap:105</strong> for raw IEEE
+802.11 or <strong>encap:101</strong> for raw IP.</p>
 <p><strong>proto</strong>:<em>protocol</em> Packet data should be passed to the specified Wireshark
 protocol dissector, e.g. <strong>proto:http</strong> for HTTP data.</p>
 </dd>
@@ -252,20 +254,34 @@ are supported:</p>
 <p>For something similar to Wireshark's standard display (&quot;Type: A (1)&quot;) you
 could use <strong>%D: %S (%N)</strong>.</p>
 </dd>
-<dt><strong><a name="t_ad_a_r_d_e" class="item">-t  ad|a|r|d|e</a></strong></dt>
+<dt><strong><a name="t_a_ad_adoy_d_dd_e_r_u_ud_udoy" class="item">-t  a|ad|adoy|d|dd|e|r|u|ud|udoy</a></strong></dt>
 
 <dd>
-<p>Set the format of the packet timestamp printed in summary lines, the default
-is relative. The format can be one of:</p>
-<p><strong>ad</strong> absolute with date: The absolute date and time is the actual time and
-date the packet was captured</p>
-<p><strong>a</strong> absolute: The absolute time is the actual time the packet was captured,
-with no date displayed</p>
-<p><strong>r</strong> relative: The relative time is the time elapsed between the first packet
-and the current packet</p>
+<p>Set the format of the packet timestamp printed in summary lines.
+The format can be one of:</p>
+<p><strong>a</strong> absolute: The absolute time, as local time in your time zone,
+is the actual time the packet was captured, with no date displayed</p>
+<p><strong>ad</strong> absolute with date: The absolute date, displayed as YYYY-MM-DD,
+and time, as local time in your time zone, is the actual time and date
+the packet was captured</p>
+<p><strong>adoy</strong> absolute with date using day of year: The absolute date,
+displayed as YYYY/DOY, and time, as local time in your time zone,
+is the actual time and date the packet was captured</p>
 <p><strong>d</strong> delta: The delta time is the time since the previous packet was
 captured</p>
+<p><strong>dd</strong> delta_displayed: The delta_displayed time is the time since the
+previous displayed packet was captured</p>
 <p><strong>e</strong> epoch: The time in seconds since epoch (Jan 1, 1970 00:00:00)</p>
+<p><strong>r</strong> relative: The relative time is the time elapsed between the first packet
+and the current packet</p>
+<p><strong>u</strong> UTC: The absolute time, as UTC, is the actual time the packet was
+captured, with no date displayed</p>
+<p><strong>ud</strong> UTC with date: The absolute date, displayed as YYYY-MM-DD,
+and time, as UTC, is the actual time and date the packet was captured</p>
+<p><strong>udoy</strong> UTC with date using day of year: The absolute date, displayed
+as YYYY/DOY, and time, as UTC, is the actual time and date the packet
+was captured</p>
+<p>The default format is relative.</p>
 </dd>
 <dt><strong><a name="v" class="item">-v</a></strong></dt>
 
@@ -343,7 +359,7 @@ file syntax; each line contains one IP address and name, separated by
 whitespace. The same directory as for the personal preferences file is
 used.</p>
 <p>Capture filter name resolution is handled by libpcap on UNIX-compatible
-systems and WinPCAP on Windows.  As such the Wireshark personal <em class="file">hosts</em> file
+systems and WinPcap on Windows.  As such the Wireshark personal <em class="file">hosts</em> file
 will not be consulted for capture filter name resolution.</p>
 </dd>
 <dt><strong>Name Resolution (ethers)</strong></dt>
@@ -367,7 +383,7 @@ example, <em class="file">C:\Program Files\Wireshark</em>) on Windows systems.</
 <p>The personal <em class="file">ethers</em> file is looked for in the same directory as the personal
 preferences file.</p>
 <p>Capture filter name resolution is handled by libpcap on UNIX-compatible
-systems and WinPCAP on Windows.  As such the Wireshark personal <em class="file">ethers</em> file
+systems and WinPcap on Windows.  As such the Wireshark personal <em class="file">ethers</em> file
 will not be consulted for capture filter name resolution.</p>
 </dd>
 <dt><strong>Name Resolution (manuf)</strong></dt>
@@ -419,6 +435,13 @@ personal preferences file.</p>
 <hr />
 <h1><a name="environment_variables">ENVIRONMENT VARIABLES</a></h1>
 <dl>
+<dt><strong><a name="wireshark_appdata" class="item">WIRESHARK_APPDATA</a></strong></dt>
+
+<dd>
+<p>On Windows, Wireshark normally stores all application data in %APPDATA% or
+%USERPROFILE%.  You can override the default location by exporting this
+environment variable to specify an alternate location.</p>
+</dd>
 <dt><strong><a name="wireshark_debug_ep_no_chunks" class="item">WIRESHARK_DEBUG_EP_NO_CHUNKS</a></strong></dt>
 
 <dd>
@@ -516,6 +539,19 @@ your environment is configured correctly, generate a core dump file.
 This can be useful to developers attempting to troubleshoot a problem
 with a protocol dissector.</p>
 </dd>
+<dt><strong><a name="wireshark_abort_on_too_many_items" class="item">WIRESHARK_ABORT_ON_TOO_MANY_ITEMS</a></strong></dt>
+
+<dd>
+<p>If this environment variable is set, <strong>Rawshark</strong> will call <code>abort(3)</code>
+if a dissector tries to add too many items to a tree (generally this
+is an indication of the dissector not breaking out of a loop soon enough).
+<code>abort(3)</code> will cause the program to exit abnormally; if you are running
+<strong>Rawshark</strong> in a debugger, it should halt in the debugger and allow
+inspection of the process, and, if you are not running it in a debugger,
+it will, on some OSes, assuming your environment is configured correctly,
+generate a core dump file.  This can be useful to developers attempting to
+troubleshoot a problem with a protocol dissector.</p>
+</dd>
 <dt><strong><a name="wireshark_ep_verify_pointers" class="item">WIRESHARK_EP_VERIFY_POINTERS</a></strong></dt>
 
 <dd>
@@ -546,7 +582,7 @@ debugging out-of-memory conditions.</p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <p>wireshark-filter(4), <code>wireshark(1)</code>, <code>tshark(1)</code>, <code>editcap(1)</code>, <code>pcap(3)</code>, <code>dumpcap(1)</code>,
-text2pcap(1), pcap-filter(7) or <code>tcpdump(8)</code> if it doesn't exist.</p>
+text2pcap(1), pcap-filter(7) or <code>tcpdump(8)</code></p>
 <p>
 </p>
 <hr />

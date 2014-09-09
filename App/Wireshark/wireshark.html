@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>The Wireshark Network Analyzer 1.10.1</title>
+<title>The Wireshark Network Analyzer 1.12.0</title>
 <link rel="stylesheet" href="ws.css" type="text/css" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rev="made" href="mailto:rurban@x-ray.at" />
@@ -83,7 +83,7 @@
 [&nbsp;<strong>-R</strong>&nbsp;&lt;read&nbsp;(display)&nbsp;filter&gt;&nbsp;]
 [&nbsp;<strong>-s</strong>&nbsp;&lt;capture&nbsp;snaplen&gt;&nbsp;]
 [&nbsp;<strong>-S</strong>&nbsp;]
-[&nbsp;<strong>-t</strong>&nbsp;a|ad|d|dd|e|r|u|ud&nbsp;]
+[&nbsp;<strong>-t</strong>&nbsp;a|ad|adoy|d|dd|e|r|u|ud|udoy&nbsp;]
 [&nbsp;<strong>-v</strong>&nbsp;]
 [&nbsp;<strong>-w</strong>&nbsp;&lt;outfile&gt;&nbsp;]
 [&nbsp;<strong>-X</strong>&nbsp;&lt;eXtension&nbsp;option&gt;&nbsp;]
@@ -98,15 +98,16 @@
 <p><strong>Wireshark</strong> is a GUI network protocol analyzer.  It lets you
 interactively browse packet data from a live network or from a
 previously saved capture file.  <strong>Wireshark</strong>'s native capture file format
-is <strong>libpcap</strong> format, which is also the format used by <strong>tcpdump</strong> and
+is <strong>pcap</strong> format, which is also the format used by <strong>tcpdump</strong> and
 various other tools.</p>
 <p><strong>Wireshark</strong> can read / import the following file formats:</p>
 <ul>
-<li><strong><a name="libpcap_captures_from_wireshark_tshark_dumpcap_tcpdump_and_various_other_tools_using_libpcap_s_tcpdump_s_capture_format" class="item">libpcap - captures from <strong>Wireshark</strong>/<strong>TShark</strong>/<strong>dumpcap</strong>, <strong>tcpdump</strong>,
-and various other tools using libpcap's/tcpdump's capture format</a></strong>
+<li><strong><a name="pcap_captures_from_wireshark_tshark_dumpcap_tcpdump_and_various_other_tools_using_libpcap_s_winpcap_s_tcpdump_s_windump_s_capture_format" class="item">pcap - captures from <strong>Wireshark</strong>/<strong>TShark</strong>/<strong>dumpcap</strong>, <strong>tcpdump</strong>,
+and various other tools using libpcap's/WinPcap's/tcpdump's/WinDump's
+capture format</a></strong>
 
 </li>
-<li><strong><a name="pcap_ng_next_generation_successor_to_libpcap_format" class="item">pcap-ng - &quot;next-generation&quot; successor to libpcap format</a></strong>
+<li><strong><a name="pcap_ng_next_generation_successor_to_pcap_format" class="item">pcap-ng - &quot;next-generation&quot; successor to pcap format</a></strong>
 
 </li>
 <li><strong><a name="snoop_and_atmsnoop_captures" class="item"><strong>snoop</strong> and <strong>atmsnoop</strong> captures</a></strong>
@@ -264,9 +265,10 @@ where <em>test</em> is one of:</p>
 <p><strong>duration</strong>:<em>value</em> Stop writing to a capture file after <em>value</em> seconds have
 elapsed.</p>
 <p><strong>filesize</strong>:<em>value</em> Stop writing to a capture file after it reaches a size of
-<em>value</em> kilobytes (where a kilobyte is 1024 bytes).  If this option is used
-together with the -b option, Wireshark will stop writing to the current
-capture file and switch to the next one if filesize is reached.</p>
+<em>value</em> kB.  If this option is used together with the -b option, Wireshark
+will stop writing to the current capture file and switch to the next one if
+filesize is reached.  Note that the filesize is limited to a maximum value of
+2 GiB.</p>
 <p><strong>files</strong>:<em>value</em> Stop writing to capture files after <em>value</em> number of files
 were written.</p>
 </dd>
@@ -290,7 +292,7 @@ where <em>key</em> is one of:</p>
 <p><strong>duration</strong>:<em>value</em> switch to the next file after <em>value</em> seconds have
 elapsed, even if the current file is not completely filled up.</p>
 <p><strong>filesize</strong>:<em>value</em> switch to the next file after it reaches a size of
-<em>value</em> kilobytes (where a kilobyte is 1024 bytes).</p>
+<em>value</em> kB.  Note that the filesize is limited to a maximum value of 2 GiB.</p>
 <p><strong>files</strong>:<em>value</em> begin again with the first file after <em>value</em> number of
 files were written (form a ring buffer).  This value must be less than 100000.
 Caution should be used when using large numbers of files: some filesystems do
@@ -299,17 +301,17 @@ requires either <strong>duration</strong> or <strong>filesize</strong> to be spe
 go to the next file.  It should be noted that each <strong>-b</strong> parameter takes exactly
 one criterion; to specify two criterion, each must be preceded by the <strong>-b</strong>
 option.</p>
-<p>Example: <strong>-b filesize:1024 -b files:5</strong> results in a ring buffer of five files
-of size one megabyte.</p>
+<p>Example: <strong>-b filesize:1000 -b files:5</strong> results in a ring buffer of five files
+of size one megabyte each.</p>
 </dd>
 <dt><strong><a name="b_capture_buffer_size" class="item">-B  &lt;capture buffer size&gt;</a></strong></dt>
 
 <dd>
-<p>Set capture buffer size (in MB, default is 2MB).  This is used by the
+<p>Set capture buffer size (in MiB, default is 2 MiB).  This is used by
 the capture driver to buffer packet data until that data can be written
 to disk.  If you encounter packet drops while capturing, try to increase
 this size.  Note that, while <strong>Wireshark</strong> attempts to set the buffer size
-to 2MB by default, and can be told to set it to a larger value, the
+to 2 MiB by default, and can be told to set it to a larger value, the
 system or interface on which you're capturing might silently limit the
 capture buffer size to a lower value or raise it to a higher value.</p>
 <p>This is available on UNIX systems with libpcap 1.0.0 or later and on
@@ -320,7 +322,7 @@ occurrence of the <strong>-i</strong> option, it sets the default capture buffer
 If used after an <strong>-i</strong> option, it sets the capture buffer size for
 the interface specified by the last <strong>-i</strong> option occurring before
 this option.  If the capture buffer size is not set specifically,
-the default capture buffer size is used if provided.</p>
+the default capture buffer size is used instead.</p>
 </dd>
 <dt><strong><a name="c_capture_packet_count" class="item">-c  &lt;capture packet count&gt;</a></strong></dt>
 
@@ -402,7 +404,7 @@ there are no non-loopback interfaces.  If there are no interfaces at all,
 <p>Pipe names should be either the name of a FIFO (named pipe) or ``-'' to
 read data from the standard input.  On Windows systems, pipe names must be
 of the form ``\\pipe\.\<strong>pipename</strong>''.  Data read from pipes must be in
-standard libpcap format.</p>
+standard pcap format.</p>
 <p>This option can occur multiple times.  When capturing from multiple
 interfaces, the capture file will be saved in pcap-ng format.</p>
 </dd>
@@ -576,15 +578,19 @@ the default snapshot length is used if provided.</p>
 <dd>
 <p>Automatically update the packet display as packets are coming in.</p>
 </dd>
-<dt><strong><a name="t_a_ad_d_dd_e_r_u_ud" class="item">-t  a|ad|d|dd|e|r|u|ud</a></strong></dt>
+<dt><strong><a name="t_a_ad_adoy_d_dd_e_r_u_ud_udoy" class="item">-t  a|ad|adoy|d|dd|e|r|u|ud|udoy</a></strong></dt>
 
 <dd>
 <p>Set the format of the packet timestamp displayed in the packet list
 window.  The format can be one of:</p>
-<p><strong>a</strong> absolute: The absolute time is the actual time the packet was captured,
-with no date displayed</p>
-<p><strong>ad</strong> absolute with date: The absolute date and time is the actual time and
-date the packet was captured</p>
+<p><strong>a</strong> absolute: The absolute time, as local time in your time zone,
+is the actual time the packet was captured, with no date displayed</p>
+<p><strong>ad</strong> absolute with date: The absolute date, displayed as YYYY-MM-DD,
+and time, as local time in your time zone, is the actual time and date
+the packet was captured</p>
+<p><strong>adoy</strong> absolute with date using day of year: The absolute date,
+displayed as YYYY/DOY, and time, as local time in your time zone,
+is the actual time and date the packet was captured</p>
 <p><strong>d</strong> delta: The delta time is the time since the previous packet was
 captured</p>
 <p><strong>dd</strong> delta_displayed: The delta_displayed time is the time since the
@@ -592,10 +598,13 @@ previous displayed packet was captured</p>
 <p><strong>e</strong> epoch: The time in seconds since epoch (Jan 1, 1970 00:00:00)</p>
 <p><strong>r</strong> relative: The relative time is the time elapsed between the first packet
 and the current packet</p>
-<p><strong>u</strong> UTC: The UTC time is the actual time the packet was captured,
-with no date displayed</p>
-<p><strong>ud</strong> UTC with date: The UTC date and time is the actual time and
-date the packet was captured</p>
+<p><strong>u</strong> UTC: The absolute time, as UTC, is the actual time the packet was
+captured, with no date displayed</p>
+<p><strong>ud</strong> UTC with date: The absolute date, displayed as YYYY-MM-DD,
+and time, as UTC, is the actual time and date the packet was captured</p>
+<p><strong>udoy</strong> UTC with date using day of year: The absolute date, displayed
+as YYYY/DOY, and time, as UTC, is the actual time and date the packet
+was captured</p>
 <p>The default format is relative.</p>
 </dd>
 <dt><strong><a name="v" class="item">-v</a></strong></dt>
@@ -615,6 +624,14 @@ date the packet was captured</p>
 is in the form <em>extension_key</em><strong>:</strong><em>value</em>, where <em>extension_key</em> can be:</p>
 <p><strong>lua_script</strong>:<em>lua_script_filename</em> tells <strong>Wireshark</strong> to load the given script in addition to the
 default Lua scripts.</p>
+<p><strong>lua_script</strong><em>num</em>:<em>argument</em> tells <strong>Wireshark</strong> to pass the given argument
+to the lua script identified by 'num', which is the number indexed order of the 'lua_script' command.
+For example, if only one script was loaded with '-X lua_script:my.lua', then '-X lua_script1:foo'
+will pass the string 'foo' to the 'my.lua' script.  If two scripts were loaded, such as '-X lua_script:my.lua'
+and '-X lua_script:other.lua' in that order, then a '-X lua_script2:bar' would pass the string 'bar' to the second lua
+script, namely 'other.lua'.</p>
+<p><strong>read_format</strong>:<em>file_format</em> tells <strong>Wireshark</strong> to use the given file format to read in the
+file (the file given in the <strong>-r</strong> command option).</p>
 <p><strong>stdin_descr</strong>:<em>description</em> tells <strong>Wireshark</strong> to use the given description when
 capturing from standard input (<strong>-i -</strong>).</p>
 </dd>
@@ -1117,10 +1134,10 @@ packet list while a live capture is in progress.</p>
 <dd>
 <p>Resize all columns to best fit the current packet display.</p>
 </dd>
-<dt><strong><a name="view_expand_subtrees" class="item">View:Expand Subtrees</a></strong></dt>
+<dt><strong><a name="view_expand_collapse_subtrees" class="item">View:Expand / Collapse Subtrees</a></strong></dt>
 
 <dd>
-<p>Expands the currently selected item and it's subtrees in the packet details.</p>
+<p>Expands / Collapses the currently selected item and it's subtrees in the packet details.</p>
 </dd>
 <dt><strong><a name="view_expand_all" class="item">View:Expand All</a></strong></dt>
 
@@ -2347,15 +2364,15 @@ should be done in &quot;multiple files&quot; mode.  This option is disabled, if 
 <p>The <em>Next file every ...  megabyte(s)</em> check box and fields lets
 you specify that a switch to a next file should be done
 if the specified filesize is reached.  You can also select the appropriate
-unit, but beware that the filesize has a maximum of 2 GB.
+unit, but beware that the filesize has a maximum of 2 GiB.
 The check box is forced to be checked, as &quot;multiple files&quot; mode requires a
 file size to be specified.</p>
 <p>The <em>Next file every ... minute(s)</em> check box and fields lets
 you specify that the switch to a next file should be done after the specified
 time has elapsed, even if the specified capture size is not reached.</p>
 <p>The <em>Ring buffer with ... files</em> field lets you specify the number
-of files of a ring buffer.  This feature will capture into to the first file
-again, after the specified amount of files were used.</p>
+of files of a ring buffer.  This feature will capture into the first file
+again, after the specified number of files have been used.</p>
 <p>The <em>Stop capture after ... files</em> field lets you specify the number
 of capture files used, until the capture is stopped.</p>
 <p>The <em>Stop capture after ... packet(s)</em> check box and field let
@@ -2531,7 +2548,7 @@ attempts are made to resolve them.  The file has the standard <em class="file">h
 file syntax; each line contains one IP address and name, separated by
 whitespace.  The same directory as for the personal preferences file is used.</p>
 <p>Capture filter name resolution is handled by libpcap on UNIX-compatible
-systems and WinPCAP on Windows.  As such the Wireshark personal <em class="file">hosts</em> file
+systems and WinPcap on Windows.  As such the Wireshark personal <em class="file">hosts</em> file
 will not be consulted for capture filter name resolution.</p>
 </dd>
 <dt><strong>Name Resolution (ethers)</strong></dt>
@@ -2555,7 +2572,7 @@ example, <em class="file">C:\Program Files\Wireshark</em>) on Windows systems.</
 <p>The personal <em class="file">ethers</em> file is looked for in the same directory as the personal
 preferences file.</p>
 <p>Capture filter name resolution is handled by libpcap on UNIX-compatible
-systems and WinPCAP on Windows.  As such the Wireshark personal <em class="file">ethers</em> file
+systems and WinPcap on Windows.  As such the Wireshark personal <em class="file">ethers</em> file
 will not be consulted for capture filter name resolution.</p>
 </dd>
 <dt><strong>Name Resolution (manuf)</strong></dt>
@@ -2677,6 +2694,13 @@ preferences file.</p>
 <hr />
 <h1><a name="environment_variables">ENVIRONMENT VARIABLES</a></h1>
 <dl>
+<dt><strong><a name="wireshark_appdata" class="item">WIRESHARK_APPDATA</a></strong></dt>
+
+<dd>
+<p>On Windows, Wireshark normally stores all application data in %APPDATA% or
+%USERPROFILE%.  You can override the default location by exporting this
+environment variable to specify an alternate location.</p>
+</dd>
 <dt><strong><a name="wireshark_debug_ep_no_chunks" class="item">WIRESHARK_DEBUG_EP_NO_CHUNKS</a></strong></dt>
 
 <dd>
@@ -2774,6 +2798,19 @@ your environment is configured correctly, generate a core dump file.
 This can be useful to developers attempting to troubleshoot a problem
 with a protocol dissector.</p>
 </dd>
+<dt><strong><a name="wireshark_abort_on_too_many_items" class="item">WIRESHARK_ABORT_ON_TOO_MANY_ITEMS</a></strong></dt>
+
+<dd>
+<p>If this environment variable is set, <strong>Wireshark</strong> will call <code>abort(3)</code>
+if a dissector tries to add too many items to a tree (generally this
+is an indication of the dissector not breaking out of a loop soon enough).
+<code>abort(3)</code> will cause the program to exit abnormally; if you are running
+<strong>Wireshark</strong> in a debugger, it should halt in the debugger and allow
+inspection of the process, and, if you are not running it in a debugger,
+it will, on some OSes, assuming your environment is configured correctly,
+generate a core dump file.  This can be useful to developers attempting to
+troubleshoot a problem with a protocol dissector.</p>
+</dd>
 <dt><strong><a name="wireshark_ep_verify_pointers" class="item">WIRESHARK_EP_VERIFY_POINTERS</a></strong></dt>
 
 <dd>
@@ -2813,7 +2850,7 @@ debugging out-of-memory conditions.</p>
 <hr />
 <h1><a name="see_also">SEE ALSO</a></h1>
 <p>wireshark-filter(4), <code>tshark(1)</code>, <code>editcap(1)</code>, <code>pcap(3)</code>, <code>dumpcap(1)</code>, <code>mergecap(1)</code>,
-text2pcap(1), pcap-filter(7) or <code>tcpdump(8)</code> if it doesn't exist.</p>
+text2pcap(1), pcap-filter(7) or <code>tcpdump(8)</code></p>
 <p>
 </p>
 <hr />
@@ -2972,7 +3009,7 @@ Palle Lyckegaard        &lt;Palle[AT]lyckegaard.dk&gt;
 Nicolas Balkota         &lt;balkota[AT]mac.com&gt; 
 Tom Uijldert            &lt;Tom.Uijldert[AT]cmg.nl&gt; 
 Akira Endoh             &lt;endoh[AT]netmarks.co.jp&gt; 
-Graeme Hewson           &lt;graeme.hewson[AT]oracle.com&gt; 
+Graeme Hewson           &lt;ghewson[AT]wormhole.me.uk&gt; 
 Pasi Eronen             &lt;pe[AT]iki.fi&gt; 
 Georg von Zezschwitz    &lt;gvz[AT]2scale.net&gt; 
 Steffen Weinreich       &lt;steve[AT]weinreich.org&gt; 
@@ -2981,7 +3018,7 @@ Gordon McKinney         &lt;gordon[AT]night-ray.com&gt;
 Pavel Novotny           &lt;Pavel.Novotny[AT]icn.siemens.de&gt; 
 Shinsuke Suzuki         &lt;suz[AT]kame.net&gt; 
 Andrew C. Feren         &lt;acferen[AT]yahoo.com&gt; 
-Tomas Kukosa            &lt;tomas.kukosa[AT]siemens.com&gt; 
+Tomas Kukosa            &lt;tomas.kukosa[AT]unify.com&gt; 
 Andreas Stockmeier      &lt;a.stockmeier[AT]avm.de&gt; 
 Pekka Nikander          &lt;pekka.nikander[AT]nomadiclab.com&gt; 
 Hamish Moffatt          &lt;hamish[AT]cloud.net.au&gt; 
@@ -3375,6 +3412,7 @@ Srinivasa Pradeep	&lt;sippyemail-wireshark[AT]yahoo.com&gt;
 Lori Tribble		&lt;ljtconsulting[AT]gmail.com&gt; 
 Thomas Boehne		&lt;TBoehne[AT]ADwin.de&gt; 
 Gerhard Gappmeier	&lt;gerhard.gappmeier[AT]ascolab.com&gt; 
+Hannes Mezger		&lt;hannes.mezger[AT]ascolab.com&gt; 
 David Katz		&lt;dkatz[AT]airspan.com&gt; 
 Toralf F&ouml;rster		&lt;toralf.foerster[AT]gmx.de&gt; 
 St&eacute;phane Bryant		&lt;stephane[AT]glycon.org&gt; 
@@ -3434,8 +3472,17 @@ Subramanian Ramachandran &lt;sramach6[AT]ncsu.edu&gt;
 Manuel Hofer		&lt;manuel[At]mnlhfr.at&gt; 
 Gaurav Patwardhan	&lt;gspatwar[AT]ncsu.edu&gt; 
 Peter Hatina		&lt;phatina[AT]redhat.com&gt; 
-Tomasz Moń		&lt;desowin[AT]gmail.com&gt;</p>
-<p>and by:</p>
+Tomasz Moń		&lt;desowin[AT]gmail.com&gt; 
+Uli Heilmeier		&lt;uh[AT]heilmeier.eu&gt; 
+Rupesh Patro		&lt;rbpatro[AT]ncsu.edu&gt; 
+Vaibhav Katkade		&lt;katkade_v[AT]yahoo.com&gt; 
+Allan W. Nielsen	&lt;anielsen[AT]vitesse.com&gt; 
+Ishraq Ibne Ashraf	&lt;ishraq[AT]tinkerforge.com&gt; 
+RobiOneKenobi		&lt;robionekenobi[AT]bluewin.ch&gt; 
+Zoltan Lajos Kis	&lt;zoltan.lajos.kis[AT]ericsson.com&gt; 
+Juan Antonio Montesinos &lt;juan.mondl[AT]gmail.com&gt; 
+Anish Bhatt		&lt;anish[at]chelsio.com&gt; 
+and by:</p>
 <p><table cellspacing="0" cellpadding="0"><tr><td>Georgi Guninski<td>&lt;guninski[AT]guninski.com&gt;
 <tr><td>Jason Copenhaver<td>&lt;jcopenha[AT]typedef.org&gt;
 <tr><td>Eric Perie<td>&lt;eric.perie[AT]colubris.com&gt;
@@ -3600,8 +3647,8 @@ Tomasz Moń		&lt;desowin[AT]gmail.com&gt;</p>
 <tr><td>Johanna Sochos<td>&lt;johanna.sochos[AT]swissqual.com&gt;
 <tr><td>Felix Obenhuber<td>&lt;felix[AT]obenhuber.de&gt;
 <tr><td>Hilko Bengen<td>&lt;bengen--wireshark[AT]hilluzination.de&gt;
-<tr><td>Hadar Shoham<td>&lt;hadar[AT]ti.com&gt;
-<tr><td>Robert Bullen<td>&lt;robert[AT]bitcricket.com&gt;
+<tr><td>Hadar Shoham<td>&lt;hadar.shoham[AT]gmail.com&gt;
+<tr><td>Robert Bullen<td>&lt;robert[AT]robertbullen.com&gt;
 <tr><td>Chuck Kristofek<td>&lt;chuck.kristofek[AT]ngc.com&gt;
 <tr><td>Markus Renz<td>&lt;Markus.Renz[AT]hirschmann.de&gt;
 <tr><td>Toshihiro Kataoka<td>&lt;kataoka.toshihiro[AT]gmail.com&gt;
@@ -3623,7 +3670,7 @@ Tomasz Moń		&lt;desowin[AT]gmail.com&gt;</p>
 <tr><td>DeCount<td>&lt;aatrade[AT]libero.it&gt;
 <tr><td>Andras Veres-Szentkiralyi<td>&lt;vsza[AT]vsza.hu&gt;
 <tr><td>Jakob Hirsch <td>&lt;jh.wireshark-bugzilla[AT]plonk.de&gt;
-<tr><td>Роман Донченко<td>&lt;DXDragon[AT]yandex.ru&gt;
+<tr><td>Роман Донченко<td>&lt;dpb[AT]corrigendum.ru&gt;
 <tr><td><td>&lt;billyjeans[AT]gmail.com&gt;
 <tr><td>Evan Huus<td>&lt;eapache[AT]gmail.com&gt;
 <tr><td>Tom Cook<td>&lt;tcook[AT]ixiacom.com&gt;
@@ -3650,7 +3697,39 @@ Tomasz Moń		&lt;desowin[AT]gmail.com&gt;</p>
 <tr><td>Alexander Chemeris<td>&lt;alexander.chemeris[AT]gmail.com&gt;
 <tr><td>Ivan Klyuchnikov<td>&lt;kluchnikovi[AT]gmail.com&gt;
 <tr><td>Max Baker<td>&lt;max[AT]warped.org&gt;
-<tr><td>Mike Garratt<td>&lt;mg.wireshark[AT]evn.co.nz&gt;</table></p>
+<tr><td>Diederik de Groot<td>&lt;dkgroot[AT]talon.nl&gt;
+<tr><td>Hauke Mehrtens<td>&lt;hauke[AT]hauke-m.de&gt;
+<tr><td>0xBismarck<td>&lt;0xbismarck[AT]gmail.com&gt;
+<tr><td>Peter Van Eynde<td>&lt;pevaneyn[AT]cisco.com&gt;
+<tr><td>Marko Hrastovec<td>&lt;marko.hrastovec[AT]sloveniacontrol.si&gt;
+<tr><td>Mike Garratt<td>&lt;mg.wireshark[AT]evn.co.nz&gt;
+<tr><td>Fabio Tarabelloni<td>&lt;fabio.tarabelloni[AT]reloc.it&gt;
+<tr><td>Chas Williams<td>&lt;chas[AT]cmf.nrl.navy.mil&gt;
+<tr><td>Javier Godoy<td>&lt;uce[AT]rjgodoy.com.ar&gt;
+<tr><td>Matt Texier<td>&lt;mtexier[AT]arbor.net&gt;
+<tr><td>Linas Vepstas<td>&lt;linasvepstas[AT]gmail.com&gt;
+<tr><td>Simon Zhong<td>&lt;szhong[AT]juniper.net&gt;
+<tr><td>Bart Van Assche<td>&lt;bvanassche[AT]acm.org&gt;
+<tr><td>Peter Lemenkov<td>&lt;lemenkov[AT]gmail.com&gt;
+<tr><td>Karl Beldan<td>&lt;karl.beldan[AT]gmail.com&gt;
+<tr><td>Jiri Engelthaler<td>&lt;engycz[AT]gmail.com&gt;
+<tr><td>Stephen Ludin<td>&lt;sludin[AT]ludin.org&gt;
+<tr><td>Andreas Urke<td>&lt;andurke[AT]gmail.com&gt;
+<tr><td>Patrik Lundquist<td>&lt;patrik.lundquist[AT]gmail.com&gt;
+<tr><td>Mark Vitale<td>&lt;mvitale[AT]sinenomine.net&gt;
+<tr><td>Peter Wu<td>&lt;lekensteyn[AT]gmail.com&gt;
+<tr><td>Jerry Negele<td>&lt;jerry.negele[AT]arrisi.com&gt;
+<tr><td>Hannes Hofer<td>&lt;hhofer[AT]barracuda.com&gt;
+<tr><td>Luca Coelho<td>&lt;luca[AT]coelho.fi&gt;
+<tr><td>Masayuki Takemura<td>&lt;masayuki.takemura[AT]gmail.com&gt;
+<tr><td>Ed Beroset<td>&lt;beroset[AT]mindspring.com&gt;
+<tr><td>e.yimjia<td>&lt;jy.m12.0[AT]gmail.com&gt;
+<tr><td>Jonathon Jongsma<td>&lt;jjongsma[AT]redhat.com&gt;
+<tr><td>Zeljko Ancimer<td>&lt;zancimer[AT]gmail.com&gt;
+<tr><td>Deon van der Westhuysen &lt;deonvdw[AT]gmail.com&gt;
+<tr><td>Ibrahim Can Yuce<td>&lt;canyuce[AT]gmail.com&gt;
+<tr><td>Robert Jongbloed<td>&lt;robertj[AT]voxlucida.com.au&gt;
+<tr><td>Pavel Moravec<td>&lt;pmoravec[AT]redhat.com&gt;</table></p>
 <p>Dan Lasley &lt;dlasley[AT]promus.com&gt; gave permission for his
 <code>dumpit()</code> hex-dump routine to be used.</p>
 <p>Mattia Cazzola &lt;mattiac[AT]alinet.it&gt; provided a patch to the
@@ -3669,6 +3748,10 @@ SHA1 routines to be used.</p>
 <p>snax &lt;snax[AT]shmoo.com&gt; gave permission to use his(?) weak key
 detection code from Airsnort.</p>
 <p>IANA gave permission for their port-numbers file to be used.</p>
+<p>We use the natural order string comparison algorithm, written by
+Martin Pool &lt;mbp[AT]sourcefrog.net&gt;.</p>
+<p>Emanuel Eichhammer &lt;support[AT]qcustomplot.com&gt; granted permission
+to use QCustomPlot.</p>
 </pre>
 </body>
 

@@ -2,9 +2,6 @@
    proto_name="poc-settings"
    description="poc-settings XML doc (RFC 4354)"
    hierarchy="yes" ?>
-<!--
-$Id: pocsettings.dtd 19612 2006-10-19 18:35:10Z lego $
--->
 
 
 <!ELEMENT poc-settings (entity)* >

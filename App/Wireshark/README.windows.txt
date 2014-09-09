@@ -1,5 +1,3 @@
-$Id: README.windows 32440 2010-04-09 21:42:51Z gerald $
-
 Installing Wireshark on Windows
 =============================
 To install Wireshark, just download the appropriate installer program from

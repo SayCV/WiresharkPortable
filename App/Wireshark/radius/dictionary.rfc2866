@@ -3,7 +3,7 @@
 #	Attributes and values defined in RFC 2866.
 #	http://www.ietf.org/rfc/rfc2866.txt
 #
-#	$Id: dictionary.rfc2866 37383 2011-05-25 00:07:37Z wmeier $
+#	$Id$
 #
 ATTRIBUTE	Acct-Status-Type			40	integer
 ATTRIBUTE	Acct-Delay-Time				41	integer

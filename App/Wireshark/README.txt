@@ -1,5 +1,3 @@
-$Id: README 39593 2011-10-26 04:51:48Z guy $
-
 General Information
 ------- -----------
 

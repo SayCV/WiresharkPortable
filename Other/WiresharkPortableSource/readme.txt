@@ -1,5 +1,3 @@
-$Id: readme.txt 28717 2009-06-13 08:20:46Z gal $
-
 Portable Wireshark
 ==================
 

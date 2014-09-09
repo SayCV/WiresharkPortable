@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: nasreq.xml 46033 2012-11-14 20:50:54Z morriss $ -->
 
 <application id="1" name="NASREQ Application" uri="http://www.ietf.org/rfc/rfc4005.txt">
 

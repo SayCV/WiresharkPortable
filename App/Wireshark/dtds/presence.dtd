@@ -3,9 +3,6 @@
    description="presence XML doc (RFC 3863)"
    media="application/cpim-pidf+xml"
    hierarchy="yes" ?>
-<!--
-$Id: presence.dtd 22483 2007-08-10 21:03:26Z lego $
--->
 
 
 <!ELEMENT presence (tuple)* >

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: Cisco.xml 43160 2012-06-08 19:17:04Z morriss $ -->
 
 	<application id="16777238" name="3GPP Gx" uri="http://www.ietf.org/internet-drafts/draft-ietf-aaa-diameter-cc-06.txt">
 

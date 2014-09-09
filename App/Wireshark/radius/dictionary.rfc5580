@@ -3,7 +3,7 @@
 #	Attributes and values defined in RFC 5580.
 #	http://www.ietf.org/rfc/rfc5580.txt
 #
-#	$Id: dictionary.rfc5580 37375 2011-05-24 16:30:32Z wmeier $
+#	$Id$
 #
 
 # One ASCII character of Namespace ID

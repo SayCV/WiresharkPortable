@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: mobileipv6.xml 43160 2012-06-08 19:17:04Z morriss $ -->
 
 	<application id="7" name="Diameter Mobile IPv6 IKE   (MIP6I)" uri="http://www.ietf.org/rfc/rfc5778.txt">
 	</application>

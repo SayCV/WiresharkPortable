@@ -6,7 +6,7 @@
 #	http://www.cisco.com/univercd/cc/td/doc/product/access/acs_soft/csacs4nt/acs31/acsuser/ad.htm
 #	http://www.cisco.com/en/US/docs/security/vpn3000/vpn3000_47/configuration/guide/ldapapp.html#wp1564468  ## [wireshark]
 #
-#	$Id: dictionary.cisco.vpn3000 29026 2009-07-08 17:23:58Z wmeier $
+#	$Id$
 #
 VENDOR		Cisco-VPN3000			3076
 
